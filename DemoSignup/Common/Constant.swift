@@ -9,6 +9,6 @@ import Foundation
 
 enum UIConfig {
     static let fontName = "AvenirNext-DemiBold"
-    static let fontSize: CGFloat = 13
+    static let fontSize: CGFloat = 12
     static let iconSize: CGFloat = 10
 }
