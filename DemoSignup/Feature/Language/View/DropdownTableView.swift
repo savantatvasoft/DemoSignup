@@ -49,22 +49,17 @@ class DropdownTableView: UIView {
         headerView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(headerView)
 
-        // Arrow using plain UIImage — no SymbolConfiguration that inflates size
-        let arrowConfig = UIImage.SymbolConfiguration(pointSize: UIConfig.iconSize, weight: .regular)
+        let arrowConfig = UIImage.SymbolConfiguration(pointSize: 9, weight: .regular)
         arrowImageView.image = UIImage(systemName: "chevron.down", withConfiguration: arrowConfig)
         arrowImageView.tintColor = .black
         arrowImageView.contentMode = .center
         arrowImageView.translatesAutoresizingMaskIntoConstraints = false
-        // Arrow MUST NOT compress or hug — fixed width 36, image centered inside
-        arrowImageView.setContentHuggingPriority(.required, for: .horizontal)
-        arrowImageView.setContentCompressionResistancePriority(.required, for: .horizontal)
         headerView.addSubview(arrowImageView)
 
         titleLabel.font = UIFont(name: UIConfig.fontName, size: UIConfig.fontSize)
         titleLabel.textColor = .black
         titleLabel.numberOfLines = 1
         titleLabel.lineBreakMode = .byTruncatingTail
-        // Title MUST lose compression fight against arrow
         titleLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         titleLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -76,14 +71,11 @@ class DropdownTableView: UIView {
             headerView.trailingAnchor.constraint(equalTo: trailingAnchor),
             headerView.bottomAnchor.constraint(equalTo: bottomAnchor),
 
-            // Arrow: fixed 36pt wide, pinned right, full height
-            arrowImageView.trailingAnchor.constraint(equalTo: headerView.trailingAnchor),
+            arrowImageView.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -2),
             arrowImageView.topAnchor.constraint(equalTo: headerView.topAnchor),
             arrowImageView.bottomAnchor.constraint(equalTo: headerView.bottomAnchor),
-            arrowImageView.widthAnchor.constraint(equalToConstant: 36),
-
-            // Title: pinned left with 16pt padding, right edge = arrow left edge
-            titleLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 16),
+            
+            titleLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 12),
             titleLabel.trailingAnchor.constraint(equalTo: arrowImageView.leadingAnchor),
             titleLabel.topAnchor.constraint(equalTo: headerView.topAnchor),
             titleLabel.bottomAnchor.constraint(equalTo: headerView.bottomAnchor),
@@ -162,55 +154,98 @@ class DropdownPopupVC: UIViewController {
     private func setupWrapper() {
         let h  = anchorFrame.height
         let th = CGFloat(items.count) * rowHeight
-        let arrowConfig = UIImage.SymbolConfiguration(pointSize: UIConfig.iconSize, weight: .regular)
 
+        // Shadow container
+        let shadowContainer = UIView(frame: CGRect(x: anchorFrame.minX,
+                                                   y: anchorFrame.minY,
+                                                   width: anchorFrame.width,
+                                                   height: h))
+        shadowContainer.backgroundColor = .clear
+        shadowContainer.layer.shadowColor = UIColor.black.cgColor
+        shadowContainer.layer.shadowOpacity = 0.2
+        shadowContainer.layer.shadowOffset = CGSize(width: 0, height: 4)
+        shadowContainer.layer.shadowRadius = 8
+        shadowContainer.layer.masksToBounds = false
+
+        view.addSubview(shadowContainer)
+
+        // Rounded wrapper inside shadow container
+        wrapperView.frame = shadowContainer.bounds
         wrapperView.backgroundColor = UIColor(named: "AppYellow") ?? .orange
         wrapperView.layer.cornerRadius = cornerRadius
-        wrapperView.layer.cornerCurve  = .continuous
-        wrapperView.layer.masksToBounds = true
-        wrapperView.frame = CGRect(x: anchorFrame.minX, y: anchorFrame.minY,
-                                   width: anchorFrame.width, height: h)
-        view.addSubview(wrapperView)
+        wrapperView.layer.cornerCurve = .continuous
+        wrapperView.layer.masksToBounds = true // clip content
+        shadowContainer.addSubview(wrapperView)
 
-        let header = UIView(frame: CGRect(x: 0, y: 0, width: anchorFrame.width, height: h))
-        header.backgroundColor = .clear
+        // MARK: - HEADER
+        let header = UIView()
+        header.translatesAutoresizingMaskIntoConstraints = false
         wrapperView.addSubview(header)
+
+        NSLayoutConstraint.activate([
+            header.topAnchor.constraint(equalTo: wrapperView.topAnchor),
+            header.leadingAnchor.constraint(equalTo: wrapperView.leadingAnchor),
+            header.trailingAnchor.constraint(equalTo: wrapperView.trailingAnchor),
+            header.heightAnchor.constraint(equalToConstant: h)
+        ])
+
         header.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(toggleFromHeader)))
 
-        // Arrow — 36pt wide container, image centered inside
-        let arrow = UIImageView(frame: CGRect(x: anchorFrame.width - 36, y: 0, width: 36, height: h))
-        arrow.image = UIImage(systemName: "chevron.up", withConfiguration: arrowConfig)
-        arrow.tintColor = .black
-        arrow.contentMode = .center
-        header.addSubview(arrow)
+        let arrowImageView = UIImageView()
+        let arrowConfig = UIImage.SymbolConfiguration(pointSize: 9, weight: .regular)
+        arrowImageView.image = UIImage(systemName: "chevron.up", withConfiguration: arrowConfig)
+        arrowImageView.tintColor = .black
+        arrowImageView.contentMode = .center
+        arrowImageView.translatesAutoresizingMaskIntoConstraints = false
+        arrowImageView.setContentHuggingPriority(.required, for: .horizontal)
+        arrowImageView.setContentCompressionResistancePriority(.required, for: .horizontal)
+        header.addSubview(arrowImageView)
 
-        // Title — from x:16 to where arrow starts, full height
-        let titleW = anchorFrame.width - 16 - 36
-        let title  = UILabel(frame: CGRect(x: 16, y: 0, width: titleW, height: h))
-        title.text          = selectedTitle
-        title.font          = UIFont(name: UIConfig.fontName, size: UIConfig.fontSize)
-        title.textColor     = .black
-        title.numberOfLines = 1
-        title.lineBreakMode = .byTruncatingTail
-        header.addSubview(title)
+        let titleLabel = UILabel()
+        titleLabel.text = selectedTitle
+        titleLabel.font = UIFont(name: UIConfig.fontName, size: UIConfig.fontSize)
+        titleLabel.textColor = .black
+        titleLabel.numberOfLines = 1
+        titleLabel.lineBreakMode = .byTruncatingTail
+        titleLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        titleLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        header.addSubview(titleLabel)
 
-        tableView.frame           = CGRect(x: 0, y: h, width: anchorFrame.width, height: th)
-        tableView.delegate        = self
-        tableView.dataSource      = self
-        tableView.rowHeight       = rowHeight
+        NSLayoutConstraint.activate([
+            arrowImageView.trailingAnchor.constraint(equalTo: header.trailingAnchor, constant: -10),
+            arrowImageView.topAnchor.constraint(equalTo: header.topAnchor),
+            arrowImageView.bottomAnchor.constraint(equalTo: header.bottomAnchor),
+
+            titleLabel.leadingAnchor.constraint(equalTo: header.leadingAnchor, constant: 12),
+            titleLabel.trailingAnchor.constraint(equalTo: arrowImageView.leadingAnchor),
+            titleLabel.topAnchor.constraint(equalTo: header.topAnchor),
+            titleLabel.bottomAnchor.constraint(equalTo: header.bottomAnchor),
+        ])
+
+        wrapperView.layoutIfNeeded()
+
+        // MARK: - TableView
+        tableView.frame = CGRect(x: 0, y: h, width: anchorFrame.width, height: th)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.rowHeight = rowHeight
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-        tableView.separatorStyle  = .none
+        tableView.separatorStyle = .none
         tableView.backgroundColor = .clear
         tableView.isScrollEnabled = false
-        tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: CGFloat.leastNormalMagnitude))
-        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: CGFloat.leastNormalMagnitude))
+        tableView.tableHeaderView = UIView(frame: .zero)
+        tableView.tableFooterView = UIView(frame: .zero)
         if #available(iOS 15.0, *) { tableView.sectionHeaderTopPadding = 0 }
         wrapperView.addSubview(tableView)
 
+        // Animate dropdown
         UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseOut) {
+            shadowContainer.frame.size.height = h + th
             self.wrapperView.frame.size.height = h + th
         }
     }
+    
 
     @objc private func toggleFromHeader() {
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn) {
@@ -223,65 +258,60 @@ class DropdownPopupVC: UIViewController {
     }
 }
 
+
 extension DropdownPopupVC: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        items.count
+        return items.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.backgroundColor             = .clear
-        cell.contentView.backgroundColor = .clear
-        cell.backgroundView              = nil
-        cell.selectionStyle              = .none
-        cell.layer.borderWidth           = 0
-        cell.layer.borderColor           = UIColor.clear.cgColor
+        cell.backgroundColor = .clear
+        cell.contentView.subviews.forEach { $0.removeFromSuperview() }
+        cell.selectionStyle = .none
 
-        let label: UILabel
-        if let existing = cell.contentView.viewWithTag(101) as? UILabel {
-            label = existing
+        let item = items[indexPath.row]
+        let label = UILabel()
+        label.text = item.uppercased(with: Locale.current)
+        label.font = UIFont(name: UIConfig.fontName, size: UIConfig.fontSize)
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.layer.cornerRadius = 0
+        label.layer.masksToBounds = true
+        
+        let isSelected = item.uppercased(with: Locale.current) == selectedTitle.uppercased(with: Locale.current)
+        if isSelected {
+            label.backgroundColor = UIColor(named: "AppYellow") ?? .systemOrange
+            label.textColor = .black
         } else {
-            let l = UILabel()
-            l.tag           = 101
-            l.font          = UIFont(name: UIConfig.fontName, size: UIConfig.fontSize)
-            l.textColor     = .black
-            l.numberOfLines = 1
-            l.lineBreakMode = .byTruncatingTail
-            l.translatesAutoresizingMaskIntoConstraints = false
-            cell.contentView.addSubview(l)
-            NSLayoutConstraint.activate([
-                l.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor, constant: 16),
-                l.trailingAnchor.constraint(equalTo: cell.contentView.trailingAnchor, constant: -16),
-                l.topAnchor.constraint(equalTo: cell.contentView.topAnchor),
-                l.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor),
-            ])
-            label = l
+            label.backgroundColor = .white
+            label.textColor = .black
         }
-        label.text = items[indexPath.row].uppercased(with: Locale.current)
 
-        let separator: UIView
-        if let existing = cell.contentView.viewWithTag(102) {
-            separator = existing
-        } else {
-            let s = UIView()
-            s.tag             = 102
-            s.backgroundColor = UIColor.black.withAlphaComponent(0.15)
-            s.translatesAutoresizingMaskIntoConstraints = false
-            cell.contentView.addSubview(s)
-            NSLayoutConstraint.activate([
-                s.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor, constant: 16),
-                s.trailingAnchor.constraint(equalTo: cell.contentView.trailingAnchor, constant: -16),
-                s.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor),
-                s.heightAnchor.constraint(equalToConstant: 0.5),
-            ])
-            separator = s
-        }
-        separator.isHidden = indexPath.row == items.count - 1
+        cell.contentView.addSubview(label)
+
+        // MARK: - Constraints with Padding
+        NSLayoutConstraint.activate([
+            label.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor, constant: 0),
+            label.trailingAnchor.constraint(equalTo: cell.contentView.trailingAnchor, constant: 0),
+            label.topAnchor.constraint(equalTo: cell.contentView.topAnchor, constant: 0),
+            label.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor, constant: 0),
+        ])
 
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = UIView()
+        footerView.backgroundColor = .clear
+        return footerView
+    }
 
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 10 // Adjust this for more or less space at the bottom
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         onSelect?(items[indexPath.row])
     }

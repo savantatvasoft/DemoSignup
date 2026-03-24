@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class ViewController: UIViewController {
 
@@ -25,6 +26,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var confirmPassword: InputTextView!
     @IBOutlet weak var mobilePassword: InputTextView!
     @IBOutlet weak var registerButton: UIButton!
+    
+    var cancellables = Set<AnyCancellable>()
+    let viewModel = SignupViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -124,7 +128,33 @@ class ViewController: UIViewController {
     }
 
     @IBAction func onPressRegister(_ sender: Any) {
-        print("onPressRegister")
+
+        // Sync UI → ViewModel
+        let fields: [(SignupField, InputTextView)] = [
+            (.mosqueName, mosqueName),
+            (.mosqueAddress, mosqueAddress),
+            (.firstName, firstName),
+            (.lastName, lastName),
+            (.email, email),
+            (.password, password),
+            (.confirmPassword, confirmPassword),
+            (.mobile, mobilePassword)
+        ]
+
+        for (field, inputView) in fields {
+            viewModel.setValue(for: field, value: inputView.textField.text ?? "")
+            inputView.clearError()
+        }
+
+        // Bind InputViews once (usually in viewDidLoad)
+        viewModel.bindInputViews(Dictionary(uniqueKeysWithValues: fields))
+
+        // Validate
+        if viewModel.validate() {
+            print("✅ All fields valid, proceed to register")
+        } else {
+            print("❌ Validation failed")
+        }
     }
 }
 
@@ -139,3 +169,5 @@ extension ViewController: UITextViewDelegate {
         return true
     }
 }
+
+

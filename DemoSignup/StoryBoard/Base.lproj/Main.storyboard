@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24128" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -21,24 +21,24 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0yL-De-RBu">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="868"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="881"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Signup" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J5i-L2-CFx">
-                                                <rect key="frame" x="16" y="65" width="110" height="44"/>
+                                                <rect key="frame" x="16" y="30" width="110" height="44"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="32"/>
                                                 <color key="textColor" name="ActiveText"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0RC-aY-CNV" customClass="DropdownTableView" customModule="DemoSignup" customModuleProvider="target">
-                                                <rect key="frame" x="292" y="65" width="85" height="35"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <rect key="frame" x="312" y="40" width="65" height="35"/>
+                                                <color key="backgroundColor" systemColor="darkTextColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="1rG-m7-Nzr"/>
-                                                    <constraint firstAttribute="width" constant="85" id="hRP-mb-kwK"/>
+                                                    <constraint firstAttribute="width" constant="65" id="hRP-mb-kwK"/>
                                                 </constraints>
                                             </view>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Already have an account? Login" translatesAutoresizingMaskIntoConstraints="NO" id="tAg-gu-zvF">
-                                                <rect key="frame" x="16" y="114" width="361" height="30"/>
+                                                <rect key="frame" x="16" y="79" width="361" height="30"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="u9t-vK-tmn"/>
@@ -48,7 +48,7 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="kM0-AK-9X4">
-                                                <rect key="frame" x="16" y="168" width="361" height="45"/>
+                                                <rect key="frame" x="16" y="133" width="361" height="45"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zoi-bm-K2n" customClass="RadioOptionView" customModule="DemoSignup" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="175.66666666666666" height="45"/>
@@ -64,67 +64,46 @@
                                                     <constraint firstAttribute="height" constant="45" id="9Zu-qe-dXE"/>
                                                 </constraints>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="m36-3v-TP1" userLabel="InputFieldStackView">
-                                                <rect key="frame" x="16" y="243" width="361" height="605"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="m36-3v-TP1" userLabel="InputFieldStackView">
+                                                <rect key="frame" x="16" y="208" width="361" height="653"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KG6-qS-KXu" userLabel="Mosque Name" customClass="InputTextView" customModule="DemoSignup" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="361" height="50"/>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="361" height="70"/>
+                                                        <color key="backgroundColor" systemColor="systemBlueColor"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="IGe-kp-cz0"/>
+                                                            <constraint firstAttribute="height" constant="70" id="KZ1-W2-xew"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e1a-wg-ieZ" userLabel="Address" customClass="InputTextView" customModule="DemoSignup" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="70" width="361" height="50"/>
+                                                        <rect key="frame" x="0.0" y="76" width="361" height="70"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="0jB-fh-DYC"/>
-                                                        </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="50I-tt-FmO" userLabel="First Name" customClass="InputTextView" customModule="DemoSignup" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="140" width="361" height="50"/>
+                                                        <rect key="frame" x="0.0" y="152" width="361" height="70"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="Rix-Ui-u1T"/>
-                                                        </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ESY-bB-15M" userLabel="Last Name" customClass="InputTextView" customModule="DemoSignup" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="210" width="361" height="50"/>
+                                                        <rect key="frame" x="0.0" y="228" width="361" height="70"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="efh-Hf-X6Y"/>
-                                                        </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gWN-pV-ueq" userLabel="Email" customClass="InputTextView" customModule="DemoSignup" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="280" width="361" height="50"/>
+                                                        <rect key="frame" x="0.0" y="304" width="361" height="70"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="Ddj-Ql-1Px"/>
-                                                        </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UVz-ax-cX1" userLabel="Password" customClass="InputTextView" customModule="DemoSignup" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="350" width="361" height="50"/>
+                                                        <rect key="frame" x="0.0" y="380" width="361" height="70"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="DSw-oW-Com"/>
-                                                        </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lvy-AU-cNq" userLabel="ConfirmPassword" customClass="InputTextView" customModule="DemoSignup" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="420" width="361" height="50"/>
+                                                        <rect key="frame" x="0.0" y="456" width="361" height="70"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="e1Z-JU-7c1"/>
-                                                        </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V9Z-t0-Tur" userLabel="MobilePassword" customClass="InputTextView" customModule="DemoSignup" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="490" width="361" height="50"/>
+                                                        <rect key="frame" x="0.0" y="532" width="361" height="70"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="G2o-AM-Edv"/>
-                                                        </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ntk-CZ-Yes">
-                                                        <rect key="frame" x="0.0" y="560" width="361" height="45"/>
+                                                        <rect key="frame" x="0.0" y="608" width="361" height="45"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Cu-vY-TCv">
                                                                 <rect key="frame" x="120.66666666666666" y="2.6666666666666288" width="120" height="40"/>
@@ -145,6 +124,9 @@
                                                                         </fragment>
                                                                     </attributedString>
                                                                 </buttonConfiguration>
+                                                                <connections>
+                                                                    <action selector="onPressRegister:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tMA-p4-n9Y"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -156,6 +138,15 @@
                                                     </view>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="UVz-ax-cX1" firstAttribute="height" secondItem="KG6-qS-KXu" secondAttribute="height" id="0pO-oG-AKd"/>
+                                                    <constraint firstItem="gWN-pV-ueq" firstAttribute="height" secondItem="KG6-qS-KXu" secondAttribute="height" id="4e1-pE-X4F"/>
+                                                    <constraint firstItem="V9Z-t0-Tur" firstAttribute="height" secondItem="KG6-qS-KXu" secondAttribute="height" id="7XG-Oz-22M"/>
+                                                    <constraint firstItem="e1a-wg-ieZ" firstAttribute="height" secondItem="KG6-qS-KXu" secondAttribute="height" id="9rX-OG-Rin"/>
+                                                    <constraint firstItem="lvy-AU-cNq" firstAttribute="height" secondItem="KG6-qS-KXu" secondAttribute="height" id="TbH-Dm-lTu"/>
+                                                    <constraint firstItem="50I-tt-FmO" firstAttribute="height" secondItem="KG6-qS-KXu" secondAttribute="height" id="fFm-ll-LGi"/>
+                                                    <constraint firstItem="ESY-bB-15M" firstAttribute="height" secondItem="KG6-qS-KXu" secondAttribute="height" id="uKW-rI-ars"/>
+                                                </constraints>
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -164,13 +155,13 @@
                                             <constraint firstItem="tAg-gu-zvF" firstAttribute="top" secondItem="J5i-L2-CFx" secondAttribute="bottom" constant="5" id="46O-kw-loO"/>
                                             <constraint firstItem="kM0-AK-9X4" firstAttribute="top" secondItem="tAg-gu-zvF" secondAttribute="bottom" constant="24" id="57u-5E-Ln5"/>
                                             <constraint firstAttribute="trailing" secondItem="m36-3v-TP1" secondAttribute="trailing" constant="16" id="7g8-Pb-1SY"/>
-                                            <constraint firstItem="0RC-aY-CNV" firstAttribute="top" secondItem="J5i-L2-CFx" secondAttribute="top" id="Bfn-Xw-uKk"/>
+                                            <constraint firstItem="0RC-aY-CNV" firstAttribute="top" secondItem="J5i-L2-CFx" secondAttribute="top" constant="10" id="Bfn-Xw-uKk"/>
                                             <constraint firstItem="kM0-AK-9X4" firstAttribute="leading" secondItem="0yL-De-RBu" secondAttribute="leading" constant="16" id="NRm-9g-kac"/>
                                             <constraint firstItem="m36-3v-TP1" firstAttribute="leading" secondItem="0yL-De-RBu" secondAttribute="leading" constant="16" id="QS7-yo-SXJ"/>
                                             <constraint firstAttribute="trailing" secondItem="0RC-aY-CNV" secondAttribute="trailing" constant="16" id="cMf-KO-wl7"/>
                                             <constraint firstAttribute="trailing" secondItem="kM0-AK-9X4" secondAttribute="trailing" constant="16" id="enG-75-S8D"/>
                                             <constraint firstAttribute="bottom" secondItem="m36-3v-TP1" secondAttribute="bottom" constant="20" id="iKi-0c-i88"/>
-                                            <constraint firstItem="J5i-L2-CFx" firstAttribute="top" secondItem="0yL-De-RBu" secondAttribute="top" constant="65" id="jih-Bn-ceE"/>
+                                            <constraint firstItem="J5i-L2-CFx" firstAttribute="top" secondItem="0yL-De-RBu" secondAttribute="top" constant="30" id="jih-Bn-ceE"/>
                                             <constraint firstAttribute="trailing" secondItem="tAg-gu-zvF" secondAttribute="trailing" constant="16" id="qDC-tF-VOB"/>
                                             <constraint firstItem="m36-3v-TP1" firstAttribute="top" secondItem="kM0-AK-9X4" secondAttribute="bottom" constant="30" id="vTg-sB-bKT"/>
                                             <constraint firstItem="J5i-L2-CFx" firstAttribute="leading" secondItem="0yL-De-RBu" secondAttribute="leading" constant="16" id="xTe-IZ-hbj"/>
@@ -227,8 +218,14 @@
         <namedColor name="Button">
             <color red="0.32899999618530273" green="0.32400000095367432" blue="0.4779999852180481" alpha="0.33000001311302185" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.53333333333333333" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray3Color">
             <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

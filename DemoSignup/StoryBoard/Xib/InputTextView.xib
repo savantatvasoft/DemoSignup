@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24128" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InputTextView" customModule="DemoSignup" customModuleProvider="target">
             <connections>
                 <outlet property="containerView" destination="63B-pi-d6h" id="WFz-BI-lg5"/>
+                <outlet property="errorText" destination="T9Y-LD-LzM" id="CVd-j0-D3F"/>
                 <outlet property="rightImageView" destination="xgI-Wc-yNe" id="YCq-Zh-fdg"/>
                 <outlet property="textField" destination="dPp-v7-g2S" id="Hua-e4-neF"/>
             </connections>
@@ -20,40 +21,53 @@
             <rect key="frame" x="0.0" y="0.0" width="437" height="76"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="63B-pi-d6h">
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="SqG-bj-0O5">
                     <rect key="frame" x="0.0" y="0.0" width="437" height="76"/>
                     <subviews>
-                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dPp-v7-g2S">
-                            <rect key="frame" x="16" y="26.333333333333329" width="373" height="23.666666666666671"/>
-                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xgI-Wc-yNe">
-                            <rect key="frame" x="397" y="26" width="24" height="24"/>
+                        <view contentMode="scaleToFill" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="63B-pi-d6h">
+                            <rect key="frame" x="0.0" y="0.0" width="437" height="50"/>
+                            <subviews>
+                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dPp-v7-g2S">
+                                    <rect key="frame" x="16" y="14" width="373" height="22"/>
+                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xgI-Wc-yNe">
+                                    <rect key="frame" x="397" y="13" width="24" height="24"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="xgI-Wc-yNe" secondAttribute="height" multiplier="1:1" id="GX7-lw-SdO"/>
+                                        <constraint firstAttribute="height" constant="24" id="xPH-2V-WPt"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="width" secondItem="xgI-Wc-yNe" secondAttribute="height" multiplier="1:1" id="GX7-lw-SdO"/>
-                                <constraint firstAttribute="height" constant="24" id="xPH-2V-WPt"/>
+                                <constraint firstAttribute="height" priority="750" constant="55" id="2IQ-VS-Npp"/>
+                                <constraint firstItem="dPp-v7-g2S" firstAttribute="leading" secondItem="63B-pi-d6h" secondAttribute="leading" constant="16" id="5KN-Bb-Bod"/>
+                                <constraint firstItem="xgI-Wc-yNe" firstAttribute="centerY" secondItem="63B-pi-d6h" secondAttribute="centerY" id="Qig-gm-Uuo"/>
+                                <constraint firstItem="dPp-v7-g2S" firstAttribute="centerY" secondItem="63B-pi-d6h" secondAttribute="centerY" id="jrA-U2-7Kc"/>
+                                <constraint firstAttribute="trailing" secondItem="xgI-Wc-yNe" secondAttribute="trailing" constant="16" id="mYu-Hz-swv"/>
+                                <constraint firstItem="xgI-Wc-yNe" firstAttribute="leading" secondItem="dPp-v7-g2S" secondAttribute="trailing" constant="8" id="pcp-uR-Oms"/>
                             </constraints>
-                        </imageView>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Error text" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T9Y-LD-LzM">
+                            <rect key="frame" x="0.0" y="52" width="437" height="24"/>
+                            <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="14"/>
+                            <color key="textColor" systemColor="systemRedColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <constraints>
-                        <constraint firstItem="dPp-v7-g2S" firstAttribute="leading" secondItem="63B-pi-d6h" secondAttribute="leading" constant="16" id="5KN-Bb-Bod"/>
-                        <constraint firstItem="xgI-Wc-yNe" firstAttribute="centerY" secondItem="63B-pi-d6h" secondAttribute="centerY" id="Qig-gm-Uuo"/>
-                        <constraint firstItem="dPp-v7-g2S" firstAttribute="centerY" secondItem="63B-pi-d6h" secondAttribute="centerY" id="jrA-U2-7Kc"/>
-                        <constraint firstAttribute="trailing" secondItem="xgI-Wc-yNe" secondAttribute="trailing" constant="16" id="mYu-Hz-swv"/>
-                        <constraint firstItem="xgI-Wc-yNe" firstAttribute="leading" secondItem="dPp-v7-g2S" secondAttribute="trailing" constant="8" id="pcp-uR-Oms"/>
-                    </constraints>
-                </view>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="63B-pi-d6h" secondAttribute="trailing" id="9gZ-4d-k8A"/>
-                <constraint firstAttribute="bottom" secondItem="63B-pi-d6h" secondAttribute="bottom" id="GYk-fL-k9c"/>
-                <constraint firstItem="63B-pi-d6h" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="hU1-oA-jlL"/>
-                <constraint firstItem="63B-pi-d6h" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="hde-YN-NEK"/>
+                <constraint firstAttribute="trailing" secondItem="SqG-bj-0O5" secondAttribute="trailing" id="QJh-6k-ttU"/>
+                <constraint firstItem="SqG-bj-0O5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="g4g-dZ-KpG"/>
+                <constraint firstItem="SqG-bj-0O5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="w3g-y4-mEs"/>
+                <constraint firstAttribute="bottom" secondItem="SqG-bj-0O5" secondAttribute="bottom" id="wYM-bM-daQ"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-211.4503816793893" y="354.22535211267609"/>
@@ -62,6 +76,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.2196078431372549" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

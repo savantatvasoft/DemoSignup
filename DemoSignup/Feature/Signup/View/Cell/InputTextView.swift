@@ -10,14 +10,35 @@ import UIKit
 
 class InputTextView: UIView {
 
+//    @IBOutlet weak var errorContainer: UIView!
     @IBOutlet weak var rightImageView: UIImageView!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var containerView: UIView!
 
+    @IBOutlet weak var errorText: UILabel!
+    
     var placeholder: String? {
         didSet {
             guard let placeholder = placeholder else { return }
             textField.applyPlaceholderMedium(placeholder)
+        }
+    }
+    
+    var error: String? {
+        didSet {
+            let hasError = !(error?.isEmpty ?? true)
+
+            errorText.text = error
+            errorText.isHidden = false
+
+            // Optional: border color change
+            containerView.layer.borderColor = hasError
+                ? UIColor.red.cgColor
+                : UIColor.systemGray4.cgColor
+
+            DispatchQueue.main.async {
+                self.layoutIfNeeded()
+            }
         }
     }
 
@@ -54,6 +75,9 @@ class InputTextView: UIView {
 
         rightImageView.contentMode = .scaleAspectFit
         rightImageView.isHidden = true
+        
+        errorText.isHidden = false
+        errorText.text = ""
     }
 
     func configure(
@@ -78,5 +102,9 @@ extension InputTextView {
 
     func setContentType(_ type: UITextContentType) {
         textField.textContentType = type
+    }
+    
+    func clearError() {
+        self.error = nil
     }
 }
