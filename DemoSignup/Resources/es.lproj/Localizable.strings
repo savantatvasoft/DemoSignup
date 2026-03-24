@@ -1,0 +1,36 @@
+/* 
+  Localizable.strings
+  DemoSignup
+
+  Created by savan soni on 24/03/26.
+  
+*/
+
+"signup_title" = "Registrarse";
+"register_btn" = "Registrar";
+"already_account" = "¿Ya tienes una cuenta?";
+"login" = "Acceso";
+"radio_mosque" = "Mezquita";
+"radio_college" = "Colegio/Universidad";
+"place_mosque_name" = "Nombre de la Mezquita";
+"place_mosque_address" = "Dirección de la Mezquita";
+"place_first_name" = "Nombre";
+"place_last_name" = "Apellido";
+"place_email" = "Correo electrónico";
+"place_password" = "Contraseña";
+"place_confirm_password" = "Confirmar contraseña";
+"place_mobile_password" = "Contraseña móvil";
+
+"field_mosque_name" = "El nombre de la mezquita";
+"field_mosque_address" = "La dirección de la mezquita";
+"field_first_name" = "El nombre";
+"field_last_name" = "El apellido";
+"field_email" = "El correo electrónico";
+"field_password" = "La contraseña";
+"field_confirm_password" = "La confirmación de contraseña";
+"field_mobile" = "El número móvil";
+
+"err_required" = "%@ es obligatorio";
+"err_invalid_email" = "Correo electrónico no válido";
+"err_password_mismatch" = "Las contraseñas no coinciden";
+"err_invalid_mobile" = "Número de móvil no válido";

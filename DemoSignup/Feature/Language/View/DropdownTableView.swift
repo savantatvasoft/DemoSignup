@@ -169,15 +169,13 @@ class DropdownPopupVC: UIViewController {
 
         view.addSubview(shadowContainer)
 
-        // Rounded wrapper inside shadow container
         wrapperView.frame = shadowContainer.bounds
         wrapperView.backgroundColor = UIColor(named: "AppYellow") ?? .orange
         wrapperView.layer.cornerRadius = cornerRadius
         wrapperView.layer.cornerCurve = .continuous
-        wrapperView.layer.masksToBounds = true // clip content
+        wrapperView.layer.masksToBounds = true
         shadowContainer.addSubview(wrapperView)
 
-        // MARK: - HEADER
         let header = UIView()
         header.translatesAutoresizingMaskIntoConstraints = false
         wrapperView.addSubview(header)
@@ -225,7 +223,6 @@ class DropdownPopupVC: UIViewController {
 
         wrapperView.layoutIfNeeded()
 
-        // MARK: - TableView
         tableView.frame = CGRect(x: 0, y: h, width: anchorFrame.width, height: th)
         tableView.delegate = self
         tableView.dataSource = self

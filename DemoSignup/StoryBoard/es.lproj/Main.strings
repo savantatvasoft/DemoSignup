@@ -1,0 +1,12 @@
+
+/* Class = "UIButton"; configuration.subtitle = "Register"; ObjectID = "1Cu-vY-TCv"; */
+"1Cu-vY-TCv.configuration.subtitle" = "Register";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "1Cu-vY-TCv"; */
+"1Cu-vY-TCv.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Signup"; ObjectID = "J5i-L2-CFx"; */
+"J5i-L2-CFx.text" = "Signup";
+
+/* Class = "UITextView"; text = "Already have an account? Login"; ObjectID = "tAg-gu-zvF"; */
+"tAg-gu-zvF.text" = "Already have an account? Login";

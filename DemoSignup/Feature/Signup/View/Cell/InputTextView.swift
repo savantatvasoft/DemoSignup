@@ -27,11 +27,8 @@ class InputTextView: UIView {
     var error: String? {
         didSet {
             let hasError = !(error?.isEmpty ?? true)
-
             errorText.text = error
             errorText.isHidden = false
-
-            // Optional: border color change
             containerView.layer.borderColor = hasError
                 ? UIColor.red.cgColor
                 : UIColor.systemGray4.cgColor

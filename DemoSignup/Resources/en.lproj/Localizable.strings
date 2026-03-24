@@ -1,0 +1,36 @@
+/* 
+  Localizable.strings
+  DemoSignup
+
+  Created by savan soni on 24/03/26.
+  
+*/
+
+"signup_title" = "Signup";
+"register_btn" = "Registration";
+"already_account" = "Already have an account?";
+"login" = "Login";
+"radio_mosque" = "Mosque";
+"radio_college" = "College/University";
+"place_mosque_name" = "Name of Mosque";
+"place_mosque_address" = "Mosque Address";
+"place_first_name" = "First Name";
+"place_last_name" = "Last Name";
+"place_email" = "Email ID";
+"place_password" = "Password";
+"place_confirm_password" = "Confirm Password";
+"place_mobile_password" = "Mobile Password";
+
+"field_mosque_name" = "Mosque Name";
+"field_mosque_address" = "Mosque Address";
+"field_first_name" = "First Name";
+"field_last_name" = "Last Name";
+"field_email" = "Email";
+"field_password" = "Password";
+"field_confirm_password" = "Confirm Password";
+"field_mobile" = "Mobile";
+
+"err_required" = "%@ is required";
+"err_invalid_email" = "Invalid email";
+"err_password_mismatch" = "Passwords do not match";
+"err_invalid_mobile" = "Invalid mobile number";

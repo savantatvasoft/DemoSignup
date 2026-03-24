@@ -1,0 +1,35 @@
+/* 
+  Localizable.strings
+  DemoSignup
+
+  Created by savan soni on 24/03/26.
+  
+*/
+"signup_title" = "साइन अप";
+"register_btn" = "पंजीकरण करें";
+"already_account" = "क्या आपके पास पहले से एक खाता मौजूद है?";
+"login" = "लॉग इन करें";
+"radio_mosque" = "मस्जिद";
+"radio_college" = "कॉलेज/विश्वविद्यालय";
+"place_mosque_name" = "मस्जिद का नाम";
+"place_mosque_address" = "मस्जिद का पता";
+"place_first_name" = "पहला नाम";
+"place_last_name" = "अंतिम नाम";
+"place_email" = "ईमेल आईडी";
+"place_password" = "पासवर्ड";
+"place_confirm_password" = "पासवर्ड की पुष्टि करें";
+"place_mobile_password" = "मोबाइल पासवर्ड";
+
+"field_mosque_name" = "मस्जिद का नाम";
+"field_mosque_address" = "मस्जिद का पता";
+"field_first_name" = "पहला नाम";
+"field_last_name" = "अंतिम नाम";
+"field_email" = "ईमेल";
+"field_password" = "पासवर्ड";
+"field_confirm_password" = "पासवर्ड की पुष्टि करें";
+"field_mobile" = "मोबाइल";
+
+"err_required" = "%@ आवश्यक है";
+"err_invalid_email" = "अमान्य ईमेल";
+"err_password_mismatch" = "पासवर्ड मेल नहीं खाते";
+"err_invalid_mobile" = "अमान्य मोबाइल नंबर";

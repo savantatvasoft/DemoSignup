@@ -12,3 +12,7 @@ enum UIConfig {
     static let fontSize: CGFloat = 12
     static let iconSize: CGFloat = 10
 }
+
+func Localized(_ key: String) -> String {
+    return NSLocalizedString(key, comment: "")
+}

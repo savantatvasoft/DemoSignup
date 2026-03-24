@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--SignupVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="DemoSignup" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="SignupVC" customModule="DemoSignup" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qnE-sY-QkE" userLabel="RootView">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -21,16 +21,16 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0yL-De-RBu">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="881"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="879"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Signup" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J5i-L2-CFx">
-                                                <rect key="frame" x="16" y="30" width="110" height="44"/>
+                                                <rect key="frame" x="16" y="60" width="110" height="44"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="32"/>
                                                 <color key="textColor" name="ActiveText"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0RC-aY-CNV" customClass="DropdownTableView" customModule="DemoSignup" customModuleProvider="target">
-                                                <rect key="frame" x="312" y="40" width="65" height="35"/>
+                                                <rect key="frame" x="312" y="70" width="65" height="35"/>
                                                 <color key="backgroundColor" systemColor="darkTextColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="1rG-m7-Nzr"/>
@@ -38,7 +38,7 @@
                                                 </constraints>
                                             </view>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Already have an account? Login" translatesAutoresizingMaskIntoConstraints="NO" id="tAg-gu-zvF">
-                                                <rect key="frame" x="16" y="79" width="361" height="30"/>
+                                                <rect key="frame" x="16" y="109" width="361" height="30"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="u9t-vK-tmn"/>
@@ -48,7 +48,7 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="kM0-AK-9X4">
-                                                <rect key="frame" x="16" y="133" width="361" height="45"/>
+                                                <rect key="frame" x="16" y="163" width="361" height="45"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zoi-bm-K2n" customClass="RadioOptionView" customModule="DemoSignup" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="175.66666666666666" height="45"/>
@@ -64,46 +64,46 @@
                                                     <constraint firstAttribute="height" constant="45" id="9Zu-qe-dXE"/>
                                                 </constraints>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="m36-3v-TP1" userLabel="InputFieldStackView">
-                                                <rect key="frame" x="16" y="208" width="361" height="653"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="m36-3v-TP1" userLabel="InputFieldStackView">
+                                                <rect key="frame" x="16" y="238" width="361" height="621"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KG6-qS-KXu" userLabel="Mosque Name" customClass="InputTextView" customModule="DemoSignup" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="361" height="70"/>
-                                                        <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="361" height="60"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="70" id="KZ1-W2-xew"/>
+                                                            <constraint firstAttribute="height" priority="750" constant="60" id="KZ1-W2-xew"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e1a-wg-ieZ" userLabel="Address" customClass="InputTextView" customModule="DemoSignup" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="76" width="361" height="70"/>
+                                                        <rect key="frame" x="0.0" y="72" width="361" height="60"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="50I-tt-FmO" userLabel="First Name" customClass="InputTextView" customModule="DemoSignup" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="152" width="361" height="70"/>
+                                                        <rect key="frame" x="0.0" y="144" width="361" height="60"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ESY-bB-15M" userLabel="Last Name" customClass="InputTextView" customModule="DemoSignup" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="228" width="361" height="70"/>
+                                                        <rect key="frame" x="0.0" y="216" width="361" height="60"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gWN-pV-ueq" userLabel="Email" customClass="InputTextView" customModule="DemoSignup" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="304" width="361" height="70"/>
+                                                        <rect key="frame" x="0.0" y="288" width="361" height="60"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UVz-ax-cX1" userLabel="Password" customClass="InputTextView" customModule="DemoSignup" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="380" width="361" height="70"/>
+                                                        <rect key="frame" x="0.0" y="360" width="361" height="60"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lvy-AU-cNq" userLabel="ConfirmPassword" customClass="InputTextView" customModule="DemoSignup" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="456" width="361" height="70"/>
+                                                        <rect key="frame" x="0.0" y="432" width="361" height="60"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V9Z-t0-Tur" userLabel="MobilePassword" customClass="InputTextView" customModule="DemoSignup" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="532" width="361" height="70"/>
+                                                        <rect key="frame" x="0.0" y="504" width="361" height="60"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ntk-CZ-Yes">
-                                                        <rect key="frame" x="0.0" y="608" width="361" height="45"/>
+                                                        <rect key="frame" x="0.0" y="576" width="361" height="45"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Cu-vY-TCv">
                                                                 <rect key="frame" x="120.66666666666666" y="2.6666666666666288" width="120" height="40"/>
@@ -161,7 +161,7 @@
                                             <constraint firstAttribute="trailing" secondItem="0RC-aY-CNV" secondAttribute="trailing" constant="16" id="cMf-KO-wl7"/>
                                             <constraint firstAttribute="trailing" secondItem="kM0-AK-9X4" secondAttribute="trailing" constant="16" id="enG-75-S8D"/>
                                             <constraint firstAttribute="bottom" secondItem="m36-3v-TP1" secondAttribute="bottom" constant="20" id="iKi-0c-i88"/>
-                                            <constraint firstItem="J5i-L2-CFx" firstAttribute="top" secondItem="0yL-De-RBu" secondAttribute="top" constant="30" id="jih-Bn-ceE"/>
+                                            <constraint firstItem="J5i-L2-CFx" firstAttribute="top" secondItem="0yL-De-RBu" secondAttribute="top" constant="60" id="jih-Bn-ceE"/>
                                             <constraint firstAttribute="trailing" secondItem="tAg-gu-zvF" secondAttribute="trailing" constant="16" id="qDC-tF-VOB"/>
                                             <constraint firstItem="m36-3v-TP1" firstAttribute="top" secondItem="kM0-AK-9X4" secondAttribute="bottom" constant="30" id="vTg-sB-bKT"/>
                                             <constraint firstItem="J5i-L2-CFx" firstAttribute="leading" secondItem="0yL-De-RBu" secondAttribute="leading" constant="16" id="xTe-IZ-hbj"/>
@@ -204,6 +204,7 @@
                         <outlet property="registerButton" destination="1Cu-vY-TCv" id="sQS-Yo-Hr5"/>
                         <outlet property="scrollView" destination="uo5-8c-GQQ" id="wvF-Em-COp"/>
                         <outlet property="signupDescriptionView" destination="tAg-gu-zvF" id="oR3-ol-uBJ"/>
+                        <outlet property="signupLabel" destination="J5i-L2-CFx" id="WGJ-pl-slw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -223,9 +224,6 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.53333333333333333" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray3Color">
             <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
