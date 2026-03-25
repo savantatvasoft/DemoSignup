@@ -5,6 +5,11 @@
   Created by savan soni on 24/03/26.
   
 */
+
+"lang_en" = "अंग्रेज़ी";
+"lang_hi" = "हिन्दी";
+"lang_es" = "स्पेनिश";
+
 "signup_title" = "साइन अप";
 "register_btn" = "पंजीकरण करें";
 "already_account" = "क्या आपके पास पहले से एक खाता मौजूद है?";

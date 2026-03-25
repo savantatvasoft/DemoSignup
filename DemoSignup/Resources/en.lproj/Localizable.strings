@@ -5,6 +5,9 @@
   Created by savan soni on 24/03/26.
   
 */
+"lang_en" = "ENG";
+"lang_hi" = "HIN";
+"lang_es" = "SPA";
 
 "signup_title" = "Signup";
 "register_btn" = "Registration";

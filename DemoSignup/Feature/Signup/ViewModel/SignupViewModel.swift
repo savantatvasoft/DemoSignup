@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import UIKit
+import GooglePlaces
 
 enum SignupField: CaseIterable {
     case mosqueName, mosqueAddress, firstName, lastName
@@ -16,7 +17,6 @@ enum SignupField: CaseIterable {
 
 class SignupViewModel {
     
-    // MARK: - Input
     @Published var mosqueName = ""
     @Published var mosqueAddress = ""
     @Published var firstName = ""
@@ -25,24 +25,44 @@ class SignupViewModel {
     @Published var password = ""
     @Published var confirmPassword = ""
     @Published var mobile = ""
-    
-    // MARK: - Output
     @Published var errors: [SignupField: String] = [:]
+    @Published var addressSuggestions: [GMSAutocompletePrediction] = []
     
-    // MARK: - Mapping InputTextView for easy updates
     private var inputViewMap: [SignupField: InputTextView] = [:]
     
     func bindInputViews(_ views: [SignupField: InputTextView]) {
         self.inputViewMap = views
     }
     
+    func searchAddress(query: String) {
+        if query.isEmpty {
+            addressSuggestions = []
+            GooglePlacesManager.shared.endSession()
+            return
+        }
+        
+        GooglePlacesManager.shared.startSession()
+        GooglePlacesManager.shared.fetchPlaces(query: query) { [weak self] results in
+            DispatchQueue.main.async {
+                self?.addressSuggestions = results
+            }
+        }
+    }
+   
+    func selectAddress(prediction: GMSAutocompletePrediction) {
+        GooglePlacesManager.shared.fetchPlaceDetails(placeID: prediction.placeID) { [weak self] result in
+            guard let result = result else { return }
+            DispatchQueue.main.async {
+                self?.mosqueAddress = result.address
+                self?.addressSuggestions = []
+            }
+        }
+    }
+
     
     @discardableResult
     func validate() -> Bool {
         var newErrors: [SignupField: String] = [:]
-        
-        // We store the KEY and the VALUE.
-        // We do NOT localize the name here to avoid errors in the loop.
         let validationTargets: [(SignupField, String, String)] = [
             (.mosqueName, mosqueName, "field_mosque_name"),
             (.mosqueAddress, mosqueAddress, "field_mosque_address"),
@@ -54,29 +74,24 @@ class SignupViewModel {
             (.mobile, mobile, "field_mobile")
         ]
         
-        // 1. Required Field Validation
         for (field, value, key) in validationTargets {
             if value.trimmingCharacters(in: .whitespaces).isEmpty {
-                // Get the translated field name (e.g., "First Name")
-                let translatedFieldName = key.localized
-                
-                // Inject it into the "is required" template
-                // Result: "First Name is required" or "पहला नाम आवश्यक है"
-                newErrors[field] = "err_required".localized(with: translatedFieldName)
+                let translatedFieldName = key.appLocalized
+                newErrors[field] = "err_required".appLocalized(with: translatedFieldName)
             }
         }
         
         // 2. Format Validations
         if !email.isEmpty && !isValidEmail(email) {
-            newErrors[.email] = "err_invalid_email".localized
+            newErrors[.email] = "err_invalid_email".appLocalized
         }
         
         if !password.isEmpty && !confirmPassword.isEmpty && password != confirmPassword {
-            newErrors[.confirmPassword] = "err_password_mismatch".localized
+            newErrors[.confirmPassword] = "err_password_mismatch".appLocalized
         }
         
         if !mobile.isEmpty && !isValidMobile(mobile) {
-            newErrors[.mobile] = "err_invalid_mobile".localized
+            newErrors[.mobile] = "err_invalid_mobile".appLocalized
         }
         
         self.errors = newErrors

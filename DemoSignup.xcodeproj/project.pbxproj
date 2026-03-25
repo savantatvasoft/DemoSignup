@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		9609B0022F73A6C8001CB185 /* GooglePlaces in Frameworks */ = {isa = PBXBuildFile; productRef = 9609B0012F73A6C8001CB185 /* GooglePlaces */; };
+		9609B0042F73A6C8001CB185 /* GooglePlacesSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9609B0032F73A6C8001CB185 /* GooglePlacesSwift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		FB7625C42F70FEA800117134 /* DemoSignup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoSignup.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,6 +41,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9609B0022F73A6C8001CB185 /* GooglePlaces in Frameworks */,
+				9609B0042F73A6C8001CB185 /* GooglePlacesSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +85,8 @@
 			);
 			name = DemoSignup;
 			packageProductDependencies = (
+				9609B0012F73A6C8001CB185 /* GooglePlaces */,
+				9609B0032F73A6C8001CB185 /* GooglePlacesSwift */,
 			);
 			productName = DemoSignup;
 			productReference = FB7625C42F70FEA800117134 /* DemoSignup.app */;
@@ -109,6 +118,9 @@
 			);
 			mainGroup = FB7625BB2F70FEA800117134;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				9609B0002F73A6C8001CB185 /* XCRemoteSwiftPackageReference "ios-places-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FB7625C52F70FEA800117134 /* Products */;
 			projectDirPath = "";
@@ -142,9 +154,12 @@
 /* Begin XCBuildConfiguration section */
 		FB7625D82F70FEA900117134 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = FB7625C62F70FEA800117134 /* DemoSignup */;
+			baseConfigurationReferenceRelativePath = Secrets.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CRTHLKVC56;
@@ -162,6 +177,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.savansoni.DemoSignup;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
@@ -177,6 +193,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CRTHLKVC56;
@@ -194,6 +211,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.savansoni.DemoSignup;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
@@ -206,6 +224,8 @@
 		};
 		FB7625DA2F70FEA900117134 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = FB7625C62F70FEA800117134 /* DemoSignup */;
+			baseConfigurationReferenceRelativePath = Secrets.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -349,6 +369,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9609B0002F73A6C8001CB185 /* XCRemoteSwiftPackageReference "ios-places-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googlemaps/ios-places-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.10.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9609B0012F73A6C8001CB185 /* GooglePlaces */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9609B0002F73A6C8001CB185 /* XCRemoteSwiftPackageReference "ios-places-sdk" */;
+			productName = GooglePlaces;
+		};
+		9609B0032F73A6C8001CB185 /* GooglePlacesSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9609B0002F73A6C8001CB185 /* XCRemoteSwiftPackageReference "ios-places-sdk" */;
+			productName = GooglePlacesSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FB7625BC2F70FEA800117134 /* Project object */;
 }

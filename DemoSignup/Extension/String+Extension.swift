@@ -8,6 +8,7 @@
 import Foundation
 
 extension String {
+    var appLocalized: String { LocalizationManager.shared.localizedString(for: self) }
     
     var localized: String {
         let result = NSLocalizedString(self, comment: "")
@@ -17,7 +18,9 @@ extension String {
         return result
     }
     
-    func localized(with arguments: CVarArg...) -> String {
-            return String(format: self.localized, arguments: arguments)
+    func appLocalized(with arguments: CVarArg...) -> String {
+            return withVaList(arguments) { vaList in
+                return NSString(format: self.appLocalized, locale: nil, arguments: vaList) as String
+            }
         }
 }
