@@ -30,6 +30,7 @@ class SignupViewModel {
     
     private var inputViewMap: [SignupField: InputTextView] = [:]
     
+    
     func bindInputViews(_ views: [SignupField: InputTextView]) {
         self.inputViewMap = views
     }

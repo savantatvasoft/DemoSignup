@@ -28,7 +28,7 @@ class InputTextView: UIView {
         didSet {
             let hasError = !(error?.isEmpty ?? true)
             errorText.text = error
-            errorText.isHidden = false
+            errorText.isHidden = !hasError
             containerView.layer.borderColor = hasError
                 ? UIColor.red.cgColor
                 : UIColor.systemGray4.cgColor
@@ -73,8 +73,8 @@ class InputTextView: UIView {
         rightImageView.contentMode = .scaleAspectFit
         rightImageView.isHidden = true
         
-        errorText.isHidden = false
-        errorText.text = ""
+        errorText.isHidden = true
+        /*errorText.text = ""*/
     }
 
     func configure(

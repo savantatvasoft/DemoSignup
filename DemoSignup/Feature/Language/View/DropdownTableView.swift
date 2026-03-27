@@ -25,7 +25,7 @@ class DropdownTableView: UIView {
     var onSelect: ((String) -> Void)?
 
     private let rowHeight: CGFloat = 40
-    private let cornerRadius: CGFloat = 18
+    private let radius: CGFloat = 18
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -43,7 +43,7 @@ class DropdownTableView: UIView {
         layer.borderColor = UIColor.clear.cgColor
 
         headerView.backgroundColor = UIColor(named: "AppYellow") ?? .orange
-        headerView.layer.cornerRadius = cornerRadius
+        headerView.layer.cornerRadius = radius
         headerView.layer.cornerCurve = .continuous
         headerView.layer.masksToBounds = true
         headerView.translatesAutoresizingMaskIntoConstraints = false
@@ -101,7 +101,7 @@ class DropdownTableView: UIView {
         vc.items = items.filter { $0 != selectedItem }
         vc.anchorFrame = frameOnScreen
         vc.rowHeight = rowHeight
-        vc.cornerRadius = cornerRadius
+        vc.radius = radius
         vc.selectedTitle = selectedItem?.uppercased(with: Locale.current) ?? ""
 
         vc.onSelect = { [weak self] selected in
@@ -134,7 +134,7 @@ class DropdownPopupVC: UIViewController {
     var items: [String] = []
     var anchorFrame: CGRect = .zero
     var rowHeight: CGFloat = 40
-    var cornerRadius: CGFloat = 20
+    var radius: CGFloat = 20
     var selectedTitle: String = ""
     var onSelect: ((String) -> Void)?
     var onDismiss: (() -> Void)?
@@ -171,7 +171,7 @@ class DropdownPopupVC: UIViewController {
 
         wrapperView.frame = shadowContainer.bounds
         wrapperView.backgroundColor = UIColor(named: "AppYellow") ?? .orange
-        wrapperView.layer.cornerRadius = cornerRadius
+        wrapperView.layer.cornerRadius = radius
         wrapperView.layer.cornerCurve = .continuous
         wrapperView.layer.masksToBounds = true
         shadowContainer.addSubview(wrapperView)

@@ -9,6 +9,7 @@
 import UIKit
 
 // MARK: - Localization Notification
+
 extension Notification.Name {
     static let languageDidChange = Notification.Name("LanguageDidChange")
 }
@@ -34,7 +35,7 @@ class LocalizationManager {
         
         updateBundle(for: code)
         NotificationCenter.default.post(name: .languageDidChange, object: nil)
-        resetAppUI()
+//        resetAppUI()
     }
 
     private func updateBundle(for code: String) {

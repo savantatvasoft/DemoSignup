@@ -31,10 +31,10 @@ class SignupVC: UIViewController {
     
     private var suggestions: [GMSAutocompletePrediction] = []
     private let tableView = UITableView()
+    var countForRegisterBtnPress:Int = 0
     
     var cancellables = Set<AnyCancellable>()
     let viewModel = SignupViewModel()
-    private var hasAppliedLocalizationOnce = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,8 +42,6 @@ class SignupVC: UIViewController {
         setup()
         binding()
     }
-    
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -55,40 +53,12 @@ class SignupVC: UIViewController {
         keyboardManager.stopObserving()
     }
     
-    func binding() {
-        mosuqueOption.onTap = { [weak self] in
-            self?.selectOption(self?.mosuqueOption)
-        }
-        
-        collegeOption.onTap = { [weak self] in
-            self?.selectOption(self?.collegeOption)
-        }
-        
-        viewModel.$addressSuggestions
-            .receive(on: RunLoop.main)
-            .sink { [weak self] suggestions in
-                self?.suggestions = suggestions
-                self?.tableView.reloadData()
-                self?.tableView.isHidden = suggestions.isEmpty
-            }
-            .store(in: &cancellables)
-        
-        viewModel.$mosqueAddress
-            .receive(on: RunLoop.main)
-            .sink { [weak self] address in
-                self?.mosqueAddress.textField.text = address
-            }
-            .store(in: &cancellables)
-    }
-    
-    func selectOption(_ selected: RadioOptionView?) {
-        mosuqueOption.isSelectedOption = false
-        collegeOption.isSelectedOption = false
-        selected?.isSelectedOption = true
-    }
-    
-    
     @IBAction func onPressRegister(_ sender: Any) {
+        countForRegisterBtnPress = 1
+        pressRegister()
+    }
+    
+    func pressRegister() {
         let fields: [(SignupField, InputTextView)] = [
             (.mosqueName, mosqueName),
             (.mosqueAddress, mosqueAddress),
@@ -106,10 +76,15 @@ class SignupVC: UIViewController {
         }
         
         viewModel.bindInputViews(Dictionary(uniqueKeysWithValues: fields))
-        if viewModel.validate() {
-            print("All fields valid, proceed to register")
-        } else {
-            print("Validation failed")
+        if countForRegisterBtnPress != 0 {
+            if viewModel.validate() {
+                AppSession.shared.signupVM = self.viewModel
+                performSegue(withIdentifier: "naviagteToDashboard", sender: self)
+                print("All fields valid, proceed to register")
+            } else {
+                print("Validation failed")
+            }
+           
         }
     }
 }
@@ -117,13 +92,6 @@ class SignupVC: UIViewController {
 extension SignupVC {
     
     func setup(){
-        mosqueAddress.textField.addTarget(self,
-                                          action: #selector(onAddressChange),
-                                          for: .editingChanged)
-        
-        mosqueAddress.isUserInteractionEnabled = true
-        mosqueAddress.textField.isUserInteractionEnabled = true
-        
         languageDropdown.layer.borderWidth = 1
         languageDropdown.layer.cornerRadius = 8
         languageDropdown.clipsToBounds = true
@@ -144,20 +112,21 @@ extension SignupVC {
         mosqueAddress.rightImageView.isHidden = false
         mosqueAddress.rightImageView?.image = UIImage(named: "Pin")
         
-        registerButton.applyLanguageStyle(
-            title: "Register",
-            backgroundColor: UIColor(named: "button")!,
-            textColor: .white,
-        )
         mosuqueOption.configure(title: "Mosque", isSelected: false)
         collegeOption.configure(title: "College/University", isSelected: false)
         handleLanguage()
-        setupTableView()
-        setupLanguageDropdown()
+        setupTableViewForShowLocation()
     }
     
     
-    func setupTableView() {
+    func setupTableViewForShowLocation() {
+        mosqueAddress.textField.addTarget(self,
+                                          action: #selector(onAddressChange),
+                                          for: .editingChanged)
+        
+        mosqueAddress.isUserInteractionEnabled = true
+        mosqueAddress.textField.isUserInteractionEnabled = true
+        
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.delegate = self
         tableView.dataSource = self
@@ -177,8 +146,11 @@ extension SignupVC {
     
     private func handleLanguage() {
         signupLabel.text = "signup_title".appLocalized
-        registerButton.setTitle("register_btn".appLocalized, for: .normal)
-        
+        registerButton.applyLanguageStyle(
+            title: "register_btn".appLocalized,
+            backgroundColor: UIColor(named: "button")!,
+            textColor: .white,
+        )
         let baseText = "already_account".appLocalized
         let linkText = "login".appLocalized
         
@@ -207,6 +179,7 @@ extension SignupVC {
                 inputView.placeholder = placeholders[index]
             }
         }
+        setupLanguageDropdown()
     }
     
     // MARK: - Language Dropdown Setup
@@ -217,15 +190,25 @@ extension SignupVC {
     
         languageDropdown.items = [enShort, hiShort, esShort]
         let currentCode = LocalizationManager.shared.getCurrentLanguageCode()
-        switch currentCode {
-        case "hi":
-            languageDropdown.selectedItem = hiShort
-        case "es":
-            languageDropdown.selectedItem = esShort
-        default:
-            languageDropdown.selectedItem = enShort
-        }
         
+        switch currentCode {
+            case "hi":
+                languageDropdown.selectedItem = hiShort
+            case "es":
+                languageDropdown.selectedItem = esShort
+            default:
+                languageDropdown.selectedItem = enShort
+        }
+    }
+    
+    @objc private func onAddressChange(_ textField: UITextField) {
+        viewModel.setValue(for: .mosqueAddress, value: textField.text ?? "")
+        viewModel.searchAddress(query: textField.text ?? "")
+    }
+    
+    func binding() {
+        
+        //MARK: Callbacks
         languageDropdown.onSelect = { [weak self] selected in
             let code: String
             
@@ -239,13 +222,48 @@ extension SignupVC {
            
             LocalizationManager.shared.setLanguage(code)
             self?.handleLanguage()
-            self?.setupLanguageDropdown()
         }
+        
+        mosuqueOption.onTap = { [weak self] in
+            self?.selectOption(self?.mosuqueOption)
+        }
+        
+        collegeOption.onTap = { [weak self] in
+            self?.selectOption(self?.collegeOption)
+        }
+        
+        //MARK: Observer - Listener
+        viewModel.$addressSuggestions
+            .receive(on: RunLoop.main)
+            .sink { [weak self] suggestions in
+                self?.suggestions = suggestions
+                self?.tableView.reloadData()
+                self?.tableView.isHidden = suggestions.isEmpty
+            }
+            .store(in: &cancellables)
+        
+        viewModel.$mosqueAddress
+            .receive(on: RunLoop.main)
+            .sink { [weak self] address in
+                self?.mosqueAddress.textField.text = address
+            }
+            .store(in: &cancellables)
+        
+        //MARK: Events
+        
+        NotificationCenter.default.publisher(for: .languageDidChange)
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in
+                self?.pressRegister()
+                self?.handleLanguage()
+            }
+            .store(in: &cancellables)
     }
     
-    @objc private func onAddressChange(_ textField: UITextField) {
-        viewModel.setValue(for: .mosqueAddress, value: textField.text ?? "")
-        viewModel.searchAddress(query: textField.text ?? "")
+    func selectOption(_ selected: RadioOptionView?) {
+        mosuqueOption.isSelectedOption = false
+        collegeOption.isSelectedOption = false
+        selected?.isSelectedOption = true
     }
 }
 
@@ -261,6 +279,7 @@ extension SignupVC: UITextViewDelegate {
 }
 
 
+// MARK: - Show List of Places from Google Palce API
 extension SignupVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView,

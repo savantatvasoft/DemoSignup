@@ -43,7 +43,7 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="height" priority="750" constant="55" id="2IQ-VS-Npp"/>
+                                <constraint firstAttribute="height" constant="50" id="2IQ-VS-Npp"/>
                                 <constraint firstItem="dPp-v7-g2S" firstAttribute="leading" secondItem="63B-pi-d6h" secondAttribute="leading" constant="16" id="5KN-Bb-Bod"/>
                                 <constraint firstItem="xgI-Wc-yNe" firstAttribute="centerY" secondItem="63B-pi-d6h" secondAttribute="centerY" id="Qig-gm-Uuo"/>
                                 <constraint firstItem="dPp-v7-g2S" firstAttribute="centerY" secondItem="63B-pi-d6h" secondAttribute="centerY" id="jrA-U2-7Kc"/>

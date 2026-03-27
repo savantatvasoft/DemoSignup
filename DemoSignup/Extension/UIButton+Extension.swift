@@ -39,4 +39,52 @@ extension UIButton {
 
         self.configuration = config
     }
+    
+    func applyCustomStyle(
+           title: String,
+           backgroundColor: UIColor = .clear,
+           textColor: UIColor = .black,
+           fontSize: CGFloat = 16,
+           iconName: String? = nil,
+           alignment: UIControl.ContentHorizontalAlignment = .leading,
+           imagePlacement: NSDirectionalRectEdge = .leading,
+           cornerStyle: UIButton.Configuration.CornerStyle = .capsule
+       ) {
+           var config = UIButton.Configuration.plain()
+           
+           // Title with font
+           var attributedTitle = AttributedString(title)
+           attributedTitle.font = UIFont(name: UIConfig.fontName, size: fontSize)
+           config.attributedTitle = attributedTitle
+           
+           // Icon
+           if let iconName = iconName {
+               config.image = UIImage(systemName: iconName)
+               config.imagePadding = 6
+               config.imagePlacement = imagePlacement
+               config.preferredSymbolConfigurationForImage =
+                   UIImage.SymbolConfiguration(pointSize: fontSize * 0.85, weight: .medium)
+           }
+           
+           // Colors & Background
+           config.background.backgroundColor = backgroundColor
+           config.baseForegroundColor = textColor
+           config.cornerStyle = cornerStyle
+           
+           // Alignment (important)
+           self.contentHorizontalAlignment = alignment
+           
+           switch alignment {
+           case .leading:
+               config.titleAlignment = .leading
+           case .trailing:
+               config.titleAlignment = .trailing
+           case .center:
+               config.titleAlignment = .center
+           default:
+               break
+           }
+           
+           self.configuration = config
+       }
 }
