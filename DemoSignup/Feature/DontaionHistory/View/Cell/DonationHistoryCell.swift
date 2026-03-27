@@ -56,30 +56,74 @@ class DonationHistoryCell: UITableViewCell {
     }
     
     func applyCardStyle(at indexPath: IndexPath, totalRows: Int) {
-    
-        contentView.layer.cornerRadius = 12
+        // 1. Basic Corner Radius for the white content
+        contentView.layer.cornerRadius = 16
+        contentView.layer.masksToBounds = true
         contentView.layer.maskedCorners = []
         
-        // 2. Section Rounding Logic & Separator Visibility
-        if totalRows == 1 {
-            // Single cell in section: round all corners, hide separator
-            contentView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-            separatorLayer.isHidden = true
-        } else if indexPath.row == 0 {
-            // Top cell: round top corners, show separator
-            contentView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-            separatorLayer.isHidden = false
-        } else if indexPath.row == totalRows - 1 {
-            // Bottom cell: round bottom corners, HIDE separator
-            contentView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-            separatorLayer.isHidden = true
-        } else {
-            // Middle cell: no rounding, show separator
-            contentView.layer.maskedCorners = []
-            separatorLayer.isHidden = false
-        }
+        // 2. Base Shadow Settings
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOffset = CGSize(width: 0, height: 2)
+        self.layer.shadowRadius = 8
+        self.layer.masksToBounds = false
         
-        // 3. UI Cleanup
+        let cardWidth = self.bounds.width - 32
+        let cardFrame = CGRect(x: 16, y: 0, width: cardWidth, height: self.bounds.height)
+        
+        // 3. Shadow Logic: Two-Pronged Approach
+        if totalRows == 1 {
+            // CASE 1: Only one cell in section
+            contentView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+            self.layer.shadowOpacity = 0.05
+            self.layer.shadowPath = UIBezierPath(roundedRect: cardFrame, cornerRadius: 20).cgPath
+            separatorLayer.isHidden = true
+            
+        } else {
+            // CASE 2: More than one cell in section
+            if indexPath.row == 0 {
+                // FIRST CELL: Top corners + Top/Side shadows only
+                contentView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+
+                self.layer.shadowOpacity = 0.01
+                self.layer.shadowColor = UIColor.black.cgColor
+                self.layer.shadowOffset = CGSize(width: 0, height: -4) // 👈 TOP shadow
+                self.layer.shadowRadius = 1
+                self.layer.masksToBounds = false
+
+                let cardWidth = self.bounds.width - 32
+
+                // 👇 SHIFT SHADOW AREA UP (hide bottom shadow)
+                let topFrame = CGRect(
+                    x: 16,
+                    y: -10, // 👈 move UP
+                    width: cardWidth,
+                    height: self.bounds.height
+                )
+
+                self.layer.shadowPath = UIBezierPath(
+                    roundedRect: topFrame,
+                    cornerRadius: 20
+                ).cgPath
+
+                separatorLayer.isHidden = false
+                
+            } else if indexPath.row == totalRows - 1 {
+                // LAST CELL: Bottom corners + Bottom/Side shadows only
+                contentView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+                self.layer.shadowOpacity = 0.05
+                // Extend path UP so top shadow of this cell is hidden
+                let bottomFrame = CGRect(x: 16, y: -20, width: cardWidth, height: self.bounds.height + 20)
+                self.layer.shadowPath = UIBezierPath(roundedRect: bottomFrame, cornerRadius: 20).cgPath
+                separatorLayer.isHidden = true
+                
+            } else {
+                // MIDDLE CELLS: No corners, NO SHADOW
+                contentView.layer.maskedCorners = []
+                self.layer.shadowOpacity = 0 // Explicitly hide shadow
+                separatorLayer.isHidden = false
+            }
+        }
+
         self.backgroundColor = .clear
         contentView.backgroundColor = .white
         self.selectionStyle = .none
