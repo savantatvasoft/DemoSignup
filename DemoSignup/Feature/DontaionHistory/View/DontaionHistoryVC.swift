@@ -56,17 +56,20 @@ extension DontaionHistoryVC {
         
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.scrollDirection = .horizontal
-            layout.minimumLineSpacing = 10
+            layout.minimumLineSpacing = 0
         }
     }
     
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.separatorStyle = .singleLine
-        tableView.separatorColor = UIColor.systemGray5
-        tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        tableView.separatorStyle = .none
         tableView.tableFooterView = UIView()
+            
+        if #available(iOS 15.0, *) {
+            tableView.sectionHeaderTopPadding = 16
+        }
+        
         let nib = UINib(nibName: "DonationHistoryCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "DonationHistoryCell")
     }
@@ -116,13 +119,15 @@ extension DontaionHistoryVC: UICollectionViewDelegate {
 
 
 extension DontaionHistoryVC: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let title = categories[indexPath.row].title
+        let category = categories[indexPath.row]
+        let title = category.title
         let tempCell = Bundle.main.loadNibNamed("DashboardTabsCell", owner: nil)?.first as! DashboardTabsCell
-        let width = tempCell.requiredWidth(for: title)
+        let width = tempCell.requiredWidth(for: title,isSelected: category.isSelected)
         
         return CGSize(width: width, height: collectionView.frame.height * 0.8)
     }
@@ -140,40 +145,59 @@ extension DontaionHistoryVC: UITableViewDataSource, UITableViewDelegate {
         return vm.groupedRecords[date]?.count ?? 0
     }
     
-    // Set fixed height to 70
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 105
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50 // increase for more space
+        return 40
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 10))
-        headerView.backgroundColor = .clear
         
-        let label = UILabel(frame: CGRect(x: 16, y: 10, width: tableView.frame.width - 32, height: 10))
+        let container = UIView()
+        container.backgroundColor = .clear
+        
+        let label = UILabel()
         label.text = vm.sectionDates[section]
         label.font = UIFont.systemFont(ofSize: 14, weight: .bold)
-        label.textColor = UIColor.darkGray
+        label.textColor = .darkGray
         
-        headerView.addSubview(label)
-        return headerView
+        container.addSubview(label)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            label.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 16),
+            label.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -8)
+        ])
+        
+        return container
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DonationHistoryCell", for: indexPath) as! DonationHistoryCell
-        
-        // Set cell background to white
         cell.backgroundColor = .white
         cell.contentView.backgroundColor = .white
         
         let date = vm.sectionDates[indexPath.section]
         if let record = vm.groupedRecords[date]?[indexPath.row] {
+            let totalRows = vm.groupedRecords[date]?.count ?? 0
+            cell.applyCardStyle(at: indexPath, totalRows: totalRows)
             cell.configure(with: record)
         }
         
         return cell
     }
+    
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0
+    }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = .clear
+        return view
+    }
+    
 }

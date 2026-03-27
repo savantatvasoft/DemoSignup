@@ -22,13 +22,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="493" height="103"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZCw-jo-vvD" userLabel="UserImage">
-                                <rect key="frame" x="16" y="21.666666666666671" width="60" height="60"/>
+                                <rect key="frame" x="16" y="16.666666666666671" width="70" height="70"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="User" translatesAutoresizingMaskIntoConstraints="NO" id="ceh-YR-qkn">
-                                        <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="60" id="5bA-kM-kow"/>
-                                            <constraint firstAttribute="height" constant="60" id="U9Z-Td-hpy"/>
+                                            <constraint firstAttribute="height" constant="70" id="U9Z-Td-hpy"/>
+                                            <constraint firstAttribute="width" secondItem="ceh-YR-qkn" secondAttribute="height" multiplier="1:1" id="Xmb-t5-y8b"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
@@ -36,8 +36,8 @@
                                 <constraints>
                                     <constraint firstItem="ceh-YR-qkn" firstAttribute="centerY" secondItem="ZCw-jo-vvD" secondAttribute="centerY" id="C47-Wf-MaI"/>
                                     <constraint firstItem="ceh-YR-qkn" firstAttribute="centerX" secondItem="ZCw-jo-vvD" secondAttribute="centerX" id="N4p-Ec-TJo"/>
-                                    <constraint firstAttribute="width" constant="60" id="cTb-WR-VYq"/>
-                                    <constraint firstAttribute="height" constant="60" id="lU4-P7-EKu"/>
+                                    <constraint firstAttribute="height" constant="70" id="lU4-P7-EKu"/>
+                                    <constraint firstAttribute="width" secondItem="ZCw-jo-vvD" secondAttribute="height" multiplier="1:1" id="oqa-wy-k54"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadiys">
@@ -46,38 +46,38 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nMC-8Z-LRB">
-                                <rect key="frame" x="88" y="8.0000000000000018" width="405" height="24.666666666666671"/>
+                                <rect key="frame" x="98" y="16.666666666666664" width="395" height="24.666666666666664"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lTT-pI-5nb">
-                                <rect key="frame" x="88" y="32.666666666666664" width="397" height="19.333333333333336"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="14"/>
+                                <rect key="frame" x="98" y="41.333333333333336" width="387" height="19.333333333333336"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="14"/>
                                 <color key="textColor" name="TextPlaceholder"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="$123" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WGB-Aw-UoM">
-                                <rect key="frame" x="88" y="60" width="39.333333333333343" height="22"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="16"/>
+                                <rect key="frame" x="98" y="68.666666666666671" width="41.666666666666657" height="22"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="16"/>
                                 <color key="textColor" name="button"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K6H-Pp-m1d">
-                                <rect key="frame" x="336.66666666666669" y="54" width="144.33333333333331" height="35.333333333333343"/>
+                                <rect key="frame" x="360.66666666666669" y="64.666666666666671" width="120.33333333333331" height="30"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" name="button"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" cornerStyle="capsule" titleAlignment="automatic">
                                     <attributedString key="attributedSubtitle">
-                                        <fragment content="ADD DONATION">
+                                        <fragment content="Auto Donation">
                                             <attributes>
-                                                <font key="NSFont" size="14" name="AvenirNext-DemiBold"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                <font key="NSFont" size="13" name="AvenirNext-DemiBold"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacing="18" paragraphSpacingBefore="18" lineHeightMultiple="1" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
                                     </attributedString>
-                                    <directionalEdgeInsets key="contentInsets" top="8" leading="16" bottom="8" trailing="16"/>
+                                    <directionalEdgeInsets key="contentInsets" top="6" leading="16" bottom="6" trailing="16"/>
                                 </buttonConfiguration>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -104,11 +104,11 @@
                             <constraint firstItem="lTT-pI-5nb" firstAttribute="top" secondItem="nMC-8Z-LRB" secondAttribute="bottom" id="RzX-Mp-jXy"/>
                             <constraint firstAttribute="trailing" secondItem="lTT-pI-5nb" secondAttribute="trailing" constant="8" id="UkL-jJ-pZP"/>
                             <constraint firstItem="nMC-8Z-LRB" firstAttribute="leading" secondItem="ZCw-jo-vvD" secondAttribute="trailing" constant="12" id="ZtT-E9-0zx"/>
-                            <constraint firstItem="nMC-8Z-LRB" firstAttribute="top" secondItem="hAh-VL-I9h" secondAttribute="top" constant="8" id="du4-Yg-9bh"/>
-                            <constraint firstItem="K6H-Pp-m1d" firstAttribute="firstBaseline" secondItem="WGB-Aw-UoM" secondAttribute="firstBaseline" id="lVo-o9-8ga"/>
+                            <constraint firstItem="K6H-Pp-m1d" firstAttribute="centerY" secondItem="WGB-Aw-UoM" secondAttribute="centerY" id="lVo-o9-8ga"/>
                             <constraint firstAttribute="trailing" secondItem="nMC-8Z-LRB" secondAttribute="trailing" id="smS-nw-V8n"/>
                             <constraint firstItem="ZCw-jo-vvD" firstAttribute="leading" secondItem="hAh-VL-I9h" secondAttribute="leading" constant="16" id="x15-Ig-4DF"/>
                             <constraint firstAttribute="trailing" secondItem="K6H-Pp-m1d" secondAttribute="trailing" constant="12" id="yIG-yV-jXJ"/>
+                            <constraint firstItem="nMC-8Z-LRB" firstAttribute="top" secondItem="ZCw-jo-vvD" secondAttribute="top" id="yrf-sb-NAM"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -124,6 +124,7 @@
             <connections>
                 <outlet property="amount" destination="WGB-Aw-UoM" id="b0Q-kl-AUK"/>
                 <outlet property="autoDonationButton" destination="K6H-Pp-m1d" id="DNb-Hu-0fc"/>
+                <outlet property="containerView" destination="hAh-VL-I9h" id="xKw-N9-rNC"/>
                 <outlet property="userAddress" destination="lTT-pI-5nb" id="DRt-ID-M0V"/>
                 <outlet property="userImage" destination="ceh-YR-qkn" id="jCx-ie-mrT"/>
                 <outlet property="userName" destination="nMC-8Z-LRB" id="G09-pd-E4q"/>

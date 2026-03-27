@@ -22,15 +22,16 @@ class DashboardTabsCell: UICollectionViewCell {
         resetUI()
     }
     
-    func requiredWidth(for title: String) -> CGFloat {
+    func requiredWidth(for title: String, isSelected: Bool) -> CGFloat {
         text.text = title
         let labelWidth = text.intrinsicContentSize.width
-        return labelWidth + 40
+        let padding: CGFloat = 40
+        return labelWidth + padding
     }
     
     // MARK: - Setup
     private func setupUI() {
-        containerView.layer.cornerRadius = 18
+        containerView.layer.cornerRadius = 17
         containerView.layer.masksToBounds = true
         resetUI()
     }
@@ -56,3 +57,4 @@ class DashboardTabsCell: UICollectionViewCell {
         }
     }
 }
+

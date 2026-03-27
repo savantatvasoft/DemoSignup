@@ -54,24 +54,21 @@ extension UIButton {
            
            // Title with font
            var attributedTitle = AttributedString(title)
-           attributedTitle.font = UIFont(name: UIConfig.fontName, size: fontSize)
+           attributedTitle.font = UIFont(name: "AvenirNext-Bold", size: fontSize)
            config.attributedTitle = attributedTitle
            
-           // Icon
            if let iconName = iconName {
                config.image = UIImage(systemName: iconName)
-               config.imagePadding = 6
+               config.imagePadding = 10
                config.imagePlacement = imagePlacement
                config.preferredSymbolConfigurationForImage =
-                   UIImage.SymbolConfiguration(pointSize: fontSize * 0.85, weight: .medium)
+               UIImage.SymbolConfiguration(pointSize: fontSize * 0.85, weight: .bold)
            }
            
-           // Colors & Background
            config.background.backgroundColor = backgroundColor
            config.baseForegroundColor = textColor
            config.cornerStyle = cornerStyle
            
-           // Alignment (important)
            self.contentHorizontalAlignment = alignment
            
            switch alignment {

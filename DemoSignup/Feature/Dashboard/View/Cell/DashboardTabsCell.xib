@@ -22,8 +22,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="185" height="57"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t6W-8V-yDG">
-                                <rect key="frame" x="72.333333333333329" y="17.666666666666668" width="40.666666666666671" height="22.000000000000004"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="16"/>
+                                <rect key="frame" x="73.333333333333329" y="18.333333333333329" width="38.333333333333329" height="20.666666666666671"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="15"/>
                                 <color key="textColor" name="ActiveText"/>
                                 <nil key="highlightedColor"/>
                             </label>
